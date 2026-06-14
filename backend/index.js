@@ -18,7 +18,7 @@ app.use("/api/users", userRouter);
 
 
 async function main() {
-  await sequelize.sync({ force: true });
+  await sequelize.sync();
   console.log("Se vincularon las tablas.");
   app.listen(8000, () =>
     console.log("Server online on port http://localhost:8000"),

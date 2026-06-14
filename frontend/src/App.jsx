@@ -4,6 +4,7 @@ import axios from "axios";
 import CrearProducto from "./components/CrearProducto";
 import EliminarProducto from "./components/EliminarProducto";
 import ModificarProducto from "./components/ModificarProducto";
+import Dashboard from "./pages/dashboard"
 
 export default function App() {
   const [productos, setProductos] = useState([]);
@@ -22,14 +23,9 @@ export default function App() {
     cargarProductos();
   }, []);
 
+
   return (
-    <div className="container">
-      <h1>Gestión de Inventario</h1>
-
-      <CrearProducto onActualizado={cargarProductos} />
-      <ModificarProducto onActualizado={cargarProductos} />
-      <EliminarProducto onEliminado={cargarProductos} />
-
-    </div>
+    <Dashboard productos={productos} refresh={cargarProductos} />
   );
+
 }

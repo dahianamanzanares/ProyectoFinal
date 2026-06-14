@@ -17,19 +17,19 @@ export default function CrearProducto() {
 
 
     return (
-        <form onSubmit={handleSubmit} className="input-base">
-            <p>Crear nuevo producto</p>
+        <form onSubmit={handleSubmit} className="contents">
+            <h3>Crear nuevo producto</h3>
 
             <label>Nombre</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+            <input type="text" className="inputClass" name="name" value={formData.name} onChange={handleChange} required />
 
             <label>Descripción</label>
-            <input type="text" name="description" value={formData.description} onChange={handleChange} required />
+            <input type="text" className="inputClass" name="description" value={formData.description} onChange={handleChange} required />
 
             <label>Precio</label>
-            <input type="number" name="price" value={formData.price} onChange={handleChange} required />
+            <input type="number" className="inputClass" name="price" value={formData.price} onChange={handleChange} required />
 
-            <button type="submit">Crear Producto</button>
+            <button type="submit" className="inputClass">Crear Producto</button>
         </form>
     );
 };
