@@ -4,15 +4,21 @@ const User = require("./models/User");
 const Stock = require("./models/Stock");
 const stockRouter = require("./routes/stockRouter");
 const userRouter = require("./routes/userRouter");
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/stock", stockRouter);
 app.use("/api/users", userRouter);
 
+
+
 async function main() {
-  await sequelize.sync({ force: true });
+  await sequelize.sync();
   console.log("Se vincularon las tablas.");
   app.listen(8000, () =>
     console.log("Server online on port http://localhost:8000"),
