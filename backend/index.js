@@ -4,6 +4,7 @@ const User = require("./models/User");
 const Stock = require("./models/Stock");
 const stockRouter = require("./routes/stockRouter");
 const userRouter = require("./routes/userRouter");
+const authRouter = require("./routes/authRouter");
 const cors = require('cors');
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/stock", stockRouter);
 app.use("/api/users", userRouter);
-
+app.use("/api/auth", authRouter);
 
 
 async function main() {

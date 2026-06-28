@@ -5,9 +5,11 @@ import CrearProducto from "./components/CrearProducto";
 import EliminarProducto from "./components/EliminarProducto";
 import ModificarProducto from "./components/ModificarProducto";
 import Dashboard from "./pages/dashboard"
+import LoginRegister from "./pages/loginRegister";
 
 export default function App() {
   const [productos, setProductos] = useState([]);
+  const [isLogged, setIsLogged] = useState(false); // Estado para controlar el acceso, dependiendo si esta loggeado o no
 
   const cargarProductos = async () => {
     try {
@@ -15,7 +17,6 @@ export default function App() {
       setProductos(res.data);
     } catch (err) {
       console.error("Error al conectar con el servidor:", err);
-      // No hacemos nada más, así la página no se bloquea
     }
   };
 
@@ -23,9 +24,16 @@ export default function App() {
     cargarProductos();
   }, []);
 
-
   return (
-    <Dashboard productos={productos} refresh={cargarProductos} />
-  );
+    <>
 
+      {!isLogged ? ( //si no esta loggeado, lo lleva a loginRegister
+
+        <LoginRegister setIsLogged={setIsLogged} />
+      ) : (
+
+        <Dashboard productos={productos} refresh={cargarProductos} /> //una vez ya loggeado, ahora si el dashboards
+      )}
+    </>
+  );
 }
