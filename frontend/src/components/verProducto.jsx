@@ -22,7 +22,7 @@ export default function VerProducto() {
             {productos.length > 0 ? (
                 productos.map((p) => (
                     <div key={p.id} className="product-card">
-                        <h3>{p.name}</h3>
+                        <h4>{p.name} Id :{p.id}</h4>
                         <p>{p.description}</p>
                         <span className="price">${p.price}</span>
                     </div>

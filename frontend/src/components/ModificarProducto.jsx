@@ -48,7 +48,7 @@ export default function ModificarProducto({ idProducto, onActualizado }) {
             <label>Precio</label>
             <input className="inputClass" type="number" name="price" value={producto.price} onChange={handleChange} />
 
-            <button className="inputClass" type="submit">Aplicar cambios</button>
+            <button className="inputClass mt-3" type="submit">Aplicar cambios</button>
         </form>
     );
 }

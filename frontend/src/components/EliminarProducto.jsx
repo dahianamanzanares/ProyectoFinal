@@ -28,7 +28,7 @@ export default function EliminarProducto({ onEliminado }) {
                 <label >ID del producto</label>
                 <input className="inputClass" type="number" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ej: 1" /> {/* e,target.value , e es evento, target es la propiedad, que toma el elemento , vendría a ser el input, y el value es el dato específico, en este caso 1 por el ejemplo. y se uda para guardar el dato en use state*/}
             </div>
-            <button type="submit">Eliminar definitivamente</button>
+            <button className="inputClass" type="submit">Eliminar definitivamente</button>
         </form>
     )
 };

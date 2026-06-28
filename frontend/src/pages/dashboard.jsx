@@ -14,7 +14,7 @@ export default function Dashboard() {
             <div className="main-container">
 
                 <div className="superior-row">
-                    <div className="logo">Anima</div>
+                    <div className="logo">Brandsmart</div>
                     <button className="nav.button">Cerrar sesión</button>
                 </div>
 
