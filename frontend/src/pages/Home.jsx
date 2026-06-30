@@ -1,5 +1,6 @@
 import '../styles/home.css';
-import Navbar from '../components/navbar';
+import Navbar from '../components/navbar'
+import GridProductos from '../components/GridProductos';;
 
 function Home({ setPagina, isLogged, setIsLogged }) {
   return (
@@ -60,41 +61,9 @@ function Home({ setPagina, isLogged, setIsLogged }) {
           </div>
         </div>
       </section>
-
-      <section className="categories">
-        <h2>Categorías destacadas</h2>
-
-        <div className="category-grid">
-          <div className="category-card">
-            <img src="/computadora.png" alt="" />
-            <h3>Notebooks</h3>
-          </div>
-
-          <div className="category-card">
-            <img src="/celular.png" alt="" />
-            <h3>Celulares</h3>
-          </div>
-
-          <div className="category-card">
-            <img src="/auriculares.png" alt="" />
-            <h3>Auriculares</h3>
-          </div>
-
-          <div className="category-card">
-            <img src="/accesorios.png" alt="" />
-            <h3>Accesorios</h3>
-          </div>
-
-          <div className="category-card">
-            <img src="/monitor.png" alt="" />
-            <h3>Monitores</h3>
-          </div>
-
-          <div className="category-card">
-            <img src="/equipogamer.png" alt="" />
-            <h3>Gaming</h3>
-          </div>
-        </div>
+      <section className='section-title'>
+        <h2 className='section-title'>Nuestros Productos</h2>
+        <GridProductos />
       </section>
     </div >
   );
