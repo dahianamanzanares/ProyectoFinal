@@ -90,3 +90,47 @@ justify-content: center;
     color: #e87509;
     margin-top: 10px;
 }
+
+
+.auth-container {
+    display: flex ;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    min-height: 100vh;
+    gap: 40px;
+    background-color: #fffaf5;
+    padding: 20px;
+}
+.login-box, .register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid #e87509;
+    box-shadow: 0 4px 15px rgba(232, 117, 9, 0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.login-box h2, .register-box h2 {
+    color: #e87509;
+    margin-bottom: 10px;
+}
+.login-box input, .register-box input {
+    padding: 12px;
+    border: 1px solid #e87509;
+    border-radius: 8px;
+    background-color: #fffcf9;
+}
+.login-box button, .register-box button {
+    padding: 12px;
+    background-color: #e87509;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}

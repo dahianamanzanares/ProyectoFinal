@@ -7,7 +7,7 @@ export default function VerProducto() {
     useEffect(() => {
         const obtenerProductos = async () => {
             try {
-                // Usamos api.get para que viaje el token
+
                 const res = await api.get("/stock");
 
                 if (Array.isArray(res.data)) {

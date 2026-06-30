@@ -40,7 +40,10 @@ export default function App() {
       {!isLogged ? (
         <LoginRegister setIsLogged={setIsLogged} />
       ) : (
-        <Dashboard productos={productos} refresh={cargarProductos} />
+        <Dashboard
+          productos={productos}
+          refresh={cargarProductos}
+          setIsLogged={setIsLogged} />
       )}
     </>
   );
