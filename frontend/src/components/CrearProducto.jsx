@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios
-    from "axios";
+import axios from "axios";
+import '../styles/dashboard.css';
 
 export default function CrearProducto() {
     const [formData, setFormData] = useState({ name: '', description: '', price: '' }); //estado para guardar datos
@@ -29,7 +29,7 @@ export default function CrearProducto() {
             <label>Precio</label>
             <input type="number" className="inputClass" name="price" value={formData.price} onChange={handleChange} required />
 
-            <button type="submit" className="inputClass">Crear Producto</button>
+            <button type="submit" className="submit-btn">Crear Producto</button>
         </form>
     );
 };

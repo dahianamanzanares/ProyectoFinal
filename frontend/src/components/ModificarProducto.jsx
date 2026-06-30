@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import '../styles/dashboard.css';
 
 export default function ModificarProducto({ idProducto, onActualizado }) {
     const [producto, setProducto] = useState({ name: '', description: '', price: '' });
@@ -36,7 +37,7 @@ export default function ModificarProducto({ idProducto, onActualizado }) {
             <h3>Modificar producto</h3>
 
             <label>ID del producto</label>
-            <input className="inputClass" type="number" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ej: 1" />
+            <input className="inputClass" type="number" value={id} onChange={(e) => setId(e.target.value)} />
             {id && !producto.name && <p style={{ color: 'red' }}>Producto no encontrado</p>}
 
             <label>Nombre</label>
@@ -48,7 +49,7 @@ export default function ModificarProducto({ idProducto, onActualizado }) {
             <label>Precio</label>
             <input className="inputClass" type="number" name="price" value={producto.price} onChange={handleChange} />
 
-            <button className="inputClass mt-3" type="submit">Aplicar cambios</button>
+            <button className="submit-btn" type="submit">Aplicar cambios</button>
         </form>
     );
 }
