@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api/api';
 
 export default function LoginRegister({ setIsLogged }) {
     const [loginData, setLoginData] = useState({ username: '', password: '' });
@@ -7,19 +7,32 @@ export default function LoginRegister({ setIsLogged }) {
 
     const handleLogin = async () => {
         try {
-            await axios.post("http://localhost:8000/api/auth/login", loginData);
-            setIsLogged(true); // Cambia el estado en App.js para mostrar el Dashboard
+
+            const res = await api.post("/auth/login", loginData);
+
+
+            if (res.data.token) {
+                localStorage.setItem("token", res.data.token);
+                setIsLogged(true); // Esto activará el Dashboard en App.jsx
+            } else {
+
+                alert(res.data);
+            }
         } catch (err) {
-            alert("Error: Usuario o contraseña incorrectos");
+            console.error(err);
+            alert("Error de conexión con el servidor");
         }
     };
 
     const handleRegister = async () => {
         try {
-            await axios.post("http://localhost:8000/api/auth/registro", regData);
+
+            await api.post("/auth/registro", regData);
             alert("Registro exitoso, ya puedes ingresar");
+            setRegData({ username: '', email: '', password: '' });
         } catch (err) {
-            alert("Error al registrar");
+            console.error(err);
+            alert("Error al registrar: verifica los datos");
         }
     };
 

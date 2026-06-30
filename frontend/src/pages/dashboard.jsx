@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+
 
 import CrearProducto from "../components/CrearProducto";
 import EliminarProducto from "../components/EliminarProducto";
 import ModificarProducto from "../components/ModificarProducto";
 import VerProducto from "../components/VerProducto";
 
-export default function Dashboard() {
-    const [vista, setVista] = useState('ver'); //estado para vontrolar lo que se muestra
+export default function Dashboard({ setIsLogged }) {
+    const [vista, setVista] = useState('ver');
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsLogged(false);
+    }
 
     return (
         <div className="full-container">
@@ -15,7 +20,7 @@ export default function Dashboard() {
 
                 <div className="superior-row">
                     <div className="logo">Brandsmart</div>
-                    <button className="nav.button">Cerrar sesión</button>
+                    <button onClick={handleLogout} className="nav-button">Cerrar sesión</button>
                 </div>
 
                 <div className="nav-row">

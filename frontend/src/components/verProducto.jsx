@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../api/api";
 
 export default function VerProducto() {
     const [productos, setProductos] = useState([]);
@@ -7,16 +7,22 @@ export default function VerProducto() {
     useEffect(() => {
         const obtenerProductos = async () => {
             try {
-                const res = await axios.get("http://localhost:8000/api/stock");
-                setProductos(res.data);
+
+                const res = await api.get("/stock");
+
+                if (Array.isArray(res.data)) {
+                    setProductos(res.data);
+                } else {
+                    setProductos([]);
+                }
             } catch (err) {
                 console.error("Error al obtener productos:", err);
+                setProductos([]);
             }
         };
         obtenerProductos();
     }, []);
 
-    console.log("Productos recibidos:", productos)
     return (
         <div className="card-grid">
             {productos.length > 0 ? (
