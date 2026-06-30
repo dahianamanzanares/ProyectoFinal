@@ -2,33 +2,62 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function EliminarProducto({ onEliminado }) {
-    const [id, setId] = useState("");
+  const [id, setId] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (window.confirm("¿Esás seguro de que quieres eliminar éste producto??")) {
-            try {
-                await axios.delete(`http://localhost:8000/api/stock/${id}`);
-                alert("Producto eliminado exitosamente")
-                setId(""); // para que se limpie el input despues de ya hecho
-            } catch (error) {
-                if (err.response && err.response.status === 404) {
-                    setMensaje("Error: El ID no existe.");
-                }
-            }
-        };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    if (!id) {
+      alert("Ingrese un ID.");
+      return;
     }
-    return (
 
-        <form onSubmit={handleSubmit} className="contents">
-            <h3>Eliminar Producto</h3>
-            <p>**Porfavor verifique id antes de continuar**</p>
-            <div className="">
-                <label >ID del producto</label>
-                <input className="inputClass" type="number" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ej: 1" /> {/* e,target.value , e es evento, target es la propiedad, que toma el elemento , vendría a ser el input, y el value es el dato específico, en este caso 1 por el ejemplo. y se uda para guardar el dato en use state*/}
-            </div>
-            <button type="submit">Eliminar definitivamente</button>
-        </form>
-    )
-};
+    const confirmar = window.confirm(
+      "¿Estás seguro de que quieres eliminar este producto?"
+    );
+
+    if (!confirmar) return;
+
+    try {
+      await axios.delete(`http://localhost:8000/api/stock/${id}`);
+
+      alert("Producto eliminado correctamente.");
+
+      setId("");
+
+      if (onEliminado) {
+        onEliminado();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        alert("El producto no existe.");
+      } else {
+        console.error(error);
+        alert("Ocurrió un error al eliminar.");
+      }
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="contents">
+      <h3>Eliminar Producto</h3>
+
+      <p>⚠ Verifique el ID antes de eliminar.</p>
+
+      <label>ID del producto</label>
+
+      <input
+        className="inputClass"
+        type="number"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        placeholder="Ingrese el ID"
+        required
+      />
+
+      <button className="card-btn" type="submit">
+        Eliminar definitivamente
+      </button>
+    </form>
+  );
+}

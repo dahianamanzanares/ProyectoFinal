@@ -1,39 +1,98 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 
+import Home from "./home";
+
+import VerProducto from "../components/verProducto";
 import CrearProducto from "../components/CrearProducto";
-import EliminarProducto from "../components/EliminarProducto";
 import ModificarProducto from "../components/ModificarProducto";
-import VerProducto from "../components/VerProducto";
+import EliminarProducto from "../components/EliminarProducto";
 
-export default function Dashboard() {
-    const [vista, setVista] = useState('ver'); //estado para vontrolar lo que se muestra
+function Dashboard({ productos, refresh }) {
+  const [vista, setVista] = useState("home");
 
-    return (
-        <div className="full-container">
-            <div className="main-container">
+  const renderVista = () => {
+    switch (vista) {
+      case "home":
+        return <Home />;
 
-                <div className="superior-row">
-                    <div className="logo">Anima</div>
-                    <button className="nav.button">Cerrar sesión</button>
-                </div>
+      case "ver":
+        return <VerProducto productos={productos} refresh={refresh} />;
 
-                <div className="nav-row">
-                    <button className={`nav-btn ${vista === 'ver' ? 'active' : ''}`} onClick={() => setVista('ver')}>Ver</button>
-                    <button className={`nav-btn ${vista === 'agregar' ? 'active' : ''}`} onClick={() => setVista('agregar')}>Agregar</button>
-                    <button className={`nav-btn ${vista === 'actualizar' ? 'active' : ''}`} onClick={() => setVista('actualizar')}>Actualizar</button>
-                    <button className={`nav-btn ${vista === 'eliminar' ? 'active' : ''}`} onClick={() => setVista('eliminar')}>Eliminar</button>
-                </div>
+      case "crear":
+        return <CrearProducto refresh={refresh} />;
 
+      case "editar":
+        return <ModificarProducto productos={productos} refresh={refresh} />;
 
-                <div className="content-area">
-                    {vista === 'ver' && <VerProducto />}
-                    {vista === 'agregar' && <CrearProducto />}
-                    {vista === 'actualizar' && <ModificarProducto />}
-                    {vista === 'eliminar' && <EliminarProducto />}
-                </div>
+      case "eliminar":
+        return <EliminarProducto productos={productos} refresh={refresh} />;
 
-            </div>
+      default:
+        return <Home />;
+    }
+  };
+
+  return (
+    <div className="dashboard">
+      <nav className="navbar">
+        <div className="logo">
+          <img src="/logo.png" alt="Logo" />
+
+          <div>
+            <h2>TECH STORE</h2>
+
+            <span>Tecnología a tu alcance</span>
+          </div>
         </div>
-    );
+
+        <div className="menu">
+          <button
+            className={vista === "home" ? "active" : ""}
+            onClick={() => setVista("home")}
+          >
+            Home
+          </button>
+
+          <button
+            className={vista === "ver" ? "active" : ""}
+            onClick={() => setVista("ver")}
+          >
+            Ver Productos
+          </button>
+
+          <button
+            className={vista === "crear" ? "active" : ""}
+            onClick={() => setVista("crear")}
+          >
+            Agregar
+          </button>
+
+          <button
+            className={vista === "editar" ? "active" : ""}
+            onClick={() => setVista("editar")}
+          >
+            Actualizar
+          </button>
+
+          <button
+            className={vista === "eliminar" ? "active" : ""}
+            onClick={() => setVista("eliminar")}
+          >
+            Eliminar
+          </button>
+        </div>
+
+        <button
+          className="logout"
+          onClick={() => (window.location.href = "/login")}
+        >
+          Cerrar sesión
+        </button>
+      </nav>
+
+      <main className="content">{renderVista()}</main>
+    </div>
+  );
 }
+
+export default Dashboard;

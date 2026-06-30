@@ -2,53 +2,114 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function ModificarProducto({ idProducto, onActualizado }) {
-    const [producto, setProducto] = useState({ name: '', description: '', price: '' });
-    const [id, setId] = useState(idProducto || "");
+  const [producto, setProducto] = useState({
+    name: "",
+    description: "",
+    price: "",
+  });
 
-    useEffect(() => {
-        if (id) {
-            axios.get(`http://localhost:8000/api/stock/${id}`)
-                .then(res => setProducto(res.data))// condicional
-                .catch(err => console.error("Error al cargar datos", err));
-        }
+  const [id, setId] = useState(idProducto || "");
 
-    }, [id]);
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`http://localhost:8000/api/stock/${id}`)
+        .then((res) => {
+          setProducto(res.data);
+        })
+        .catch((error) => {
+          console.error("Error al cargar el producto:", error);
 
-    const handleChange = (e) => {
-        setProducto({ ...producto, [e.target.name]: e.target.value });
-    };
+          setProducto({
+            name: "",
+            description: "",
+            price: "",
+          });
+        });
+    }
+  }, [id]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.put(`http://localhost:8000/api/stock/${id}`, producto);
-            alert("Producto actualizado con éxito");
-            if (onActualizado) onActualizado();
-        } catch (error) {
-            if (err.response && err.response.status === 404) {
-                setMensaje("Error: El ID no existe.");
-            }
-        }
-    };
+  const handleChange = (e) => {
+    setProducto({
+      ...producto,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    return (
-        <form onSubmit={handleSubmit} className="contents" >
-            <h3>Modificar producto</h3>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            <label>ID del producto</label>
-            <input className="inputClass" type="number" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ej: 1" />
-            {id && !producto.name && <p style={{ color: 'red' }}>Producto no encontrado</p>}
+    if (!id) {
+      alert("Ingrese un ID.");
+      return;
+    }
 
-            <label>Nombre</label>
-            <input className="inputClass" type="text" name="name" value={producto.name} onChange={handleChange} />
+    try {
+      await axios.put(`http://localhost:8000/api/stock/${id}`, producto);
 
-            <label>Descripción</label>
-            <input className="inputClass" type="text" name="description" value={producto.description} onChange={handleChange} />
+      alert("Producto actualizado con éxito.");
 
-            <label>Precio</label>
-            <input className="inputClass" type="number" name="price" value={producto.price} onChange={handleChange} />
+      if (onActualizado) {
+        onActualizado();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        alert("El producto no existe.");
+      } else {
+        console.error(error);
+        alert("Ocurrió un error al actualizar.");
+      }
+    }
+  };
 
-            <button className="inputClass" type="submit">Aplicar cambios</button>
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit} className="contents">
+      <h3>Modificar Producto</h3>
+
+      <label>ID del producto</label>
+
+      <input
+        className="inputClass"
+        type="number"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        placeholder="Ingrese el ID"
+        required
+      />
+
+      <label>Nombre</label>
+
+      <input
+        className="inputClass"
+        type="text"
+        name="name"
+        value={producto.name}
+        onChange={handleChange}
+      />
+
+      <label>Descripción</label>
+
+      <input
+        className="inputClass"
+        type="text"
+        name="description"
+        value={producto.description}
+        onChange={handleChange}
+      />
+
+      <label>Precio</label>
+
+      <input
+        className="inputClass"
+        type="number"
+        name="price"
+        value={producto.price}
+        onChange={handleChange}
+      />
+
+      <button className="inputClass" type="submit">
+        Aplicar cambios
+      </button>
+    </form>
+  );
 }
