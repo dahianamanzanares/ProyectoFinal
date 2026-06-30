@@ -1,0 +1,41 @@
+.auth-container {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fffaf5;
+    padding: 20px;
+    justify-content: center;
+}
+
+.login-box, .register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid #e87509;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 2vh;
+    color: black;
+    text-align: center;
+}
+
+.login-box input, .register-box input {
+    padding: 12px;
+    border: 1px solid #e87509;
+    border-radius: 8px;
+    background-color: #fffcf9;
+    color: black;
+}
+
+.login-box button, .register-box button {
+    padding: 12px;
+    background-color: #e87509;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}

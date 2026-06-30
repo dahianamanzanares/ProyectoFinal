@@ -1,0 +1,124 @@
+input {
+ background: transparent;
+    border: 1px solid #e87509;
+    color: #ffffff;
+    padding: 4px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin: 3px;
+}
+
+.main-container {
+  border: none;
+  border-radius: 25px;
+  padding: 30px;
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: #fff;
+  min-height: 500px;
+}
+.superior-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.nav-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background:#fda655;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.content-area {
+  border: 2px solid #e87509;
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 300px;
+  align-items: center
+}
+.inputClass {
+border-radius: 8px;
+background-color: aliceblue;
+display: flex;
+align-items: center;
+justify-content: center;
+color: black;
+}
+.contents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.product-card {
+    border: 2px solid #e87509;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); 
+}
+
+.product-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e87509;
+    margin-top: 10px;
+}
+
+
+.auth-container {
+    display: flex ;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    min-height: 100vh;
+    gap: 40px;
+    background-color: #fffaf5;
+    padding: 20px;
+}
+label{
+    color: #333;}
+.submit-btn{
+      flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background:#fda655;
+  cursor: pointer;
+  font-weight: bold
+
+}

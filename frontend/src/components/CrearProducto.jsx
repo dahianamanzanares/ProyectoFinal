@@ -1,35 +1,96 @@
 import { useState } from "react";
-import axios
-    from "axios";
+import axios from "axios";
+import '../styles/dashboard.css';
 
 export default function CrearProducto() {
-    const [formData, setFormData] = useState({ name: '', description: '', price: '' }); //estado para guardar datos
+    // 1. Usamos estados individuales para que sea más fácil armar el paquete con la imagen
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [image, setImage] = useState(null);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value }); // es lo que maneja los cambios
+    const handleFileChange = (e) => {
+        setImage(e.target.files[0]);
     };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await axios.post('http://localhost:8000/api/stock', formData);
-        alert("Producto creado");
-    } // con esto envío al servidor los datos y me responde que fue creado, falta try catch
+        const dataForm = new FormData();
+        dataForm.append('name', name);
+        dataForm.append('description', description);
+        dataForm.append('price', price);
 
+        if (image) {
+            dataForm.append('image', image);
+        }
+
+        try {
+
+            const response = await axios.post('http://localhost:8000/api/stock', dataForm, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            alert("¡Producto creado con éxito!");
+
+
+            setName('');
+            setDescription('');
+            setPrice('');
+            setImage(null);
+
+        } catch (error) {
+            console.error("Error al crear:", error);
+            alert("Hubo un error al crear el producto");
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit} className="contents">
             <h3>Crear nuevo producto</h3>
 
             <label>Nombre</label>
-            <input type="text" className="inputClass" name="name" value={formData.name} onChange={handleChange} required />
+            <input
+                type="text"
+                className="inputClass"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+            />
 
             <label>Descripción</label>
-            <input type="text" className="inputClass" name="description" value={formData.description} onChange={handleChange} required />
+            <input
+                type="text"
+                className="inputClass"
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+            />
 
             <label>Precio</label>
-            <input type="number" className="inputClass" name="price" value={formData.price} onChange={handleChange} required />
+            <input
+                type="number"
+                className="inputClass"
+                name="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                required
+            />
 
-            <button type="submit" className="inputClass">Crear Producto</button>
+            <label>Imagen</label>
+            <input
+                type="file"
+                className="inputClass"
+                accept="image/*"
+                onChange={handleFileChange}
+            />
+
+            <button type="submit" className="submit-btn">Crear Producto</button>
         </form>
     );
-};
+}

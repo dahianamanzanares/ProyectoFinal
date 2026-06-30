@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
+import '../styles/dashboard.css';
 
 export default function VerProducto() {
     const [productos, setProductos] = useState([]);
@@ -28,8 +29,9 @@ export default function VerProducto() {
             {productos.length > 0 ? (
                 productos.map((p) => (
                     <div key={p.id} className="product-card">
-                        <h4>{p.name} Id :{p.id}</h4>
+                        <h4>{p.name} </h4>
                         <p>{p.description}</p>
+                        <p>Id :{p.id}</p>
                         <span className="price">${p.price}</span>
                     </div>
                 ))
