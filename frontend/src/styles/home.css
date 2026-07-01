@@ -26,7 +26,7 @@ html { scroll-behavior: smooth; }
 .hero h1 { font-size: 88px; font-weight: 800; line-height: 1; margin-bottom: 20px; }
 .hero h3 { font-size: 30px; color: #ffffff; font-weight: 500; margin-bottom: 25px; }
 .hero p { color: #cfcfcf; max-width: 580px; font-size: 18px; margin-bottom: 12px; }
-.hero-btn { margin-top: 30px; background: #ff7a00; color: white; border: none; padding: 18px 45px; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.35s; }
+.hero-btn .btn-info{ margin-top: 30px; background: #ff7a00; color: white; border: none; padding: 18px 45px; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.35s; }
 .hero-btn:hover { transform: translateY(-5px); background: #ff9528; }
 
 .hero-image-container { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
@@ -79,14 +79,14 @@ html { scroll-behavior: smooth; }
     color: #e67e22;
     font-size: 1.2rem;
 }
-.btn-comprar{
+.btn-info{
   background-color: #ff7a00;
   border: none;
   box-sizing: content-box;
   border-radius: 6px;
   padding: 3%;
 }
-CSS
+
 #nuestros-productos {
     text-align: center;
     margin: 40px 0;     
@@ -143,4 +143,52 @@ CSS
 
 .social-links a:hover {
     color: #fff;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.whatsapp-btn {
+    background-color: #25d366;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.whatsapp-btn a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
 }

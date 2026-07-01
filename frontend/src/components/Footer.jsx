@@ -5,9 +5,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <h3>TechStore</h3>
-        <p>&copy; 2026 TechStore. Todos los derechos reservados.</p>
-        <h3>TechStore</h3>
         <p className="footer-slogan">Tecnología que impulsa tu día.</p>
+        <p>&copy; 2026 TechStore. Todos los derechos reservados.</p>
+
         <div className="social-links">
           <a href="https://instagram.com" target="_blank" rel="noreferrer">
             Instagram
