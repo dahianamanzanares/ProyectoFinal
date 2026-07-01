@@ -1,8 +1,15 @@
 import '../styles/home.css';
 import Navbar from '../components/navbar'
 import GridProductos from '../components/GridProductos';;
+import Footer from '../components/Footer';
 
 function Home({ setPagina, isLogged, setIsLogged }) {
+  const scrollToProductos = () => {
+    const seccion = document.getElementById('nuestros-productos');
+    if (seccion) {
+      seccion.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className="home home-container">
       <Navbar setPagina={setPagina} isLogged={false} />
@@ -20,7 +27,7 @@ function Home({ setPagina, isLogged, setIsLogged }) {
             envío a todo el país.
           </p>
 
-          <button className="hero-btn">🛒 Ver productos</button>
+          <button onClick={scrollToProductos} className="hero-btn">🛒 Ver productos</button>
         </div>
 
         <div className="hero-image-container">
@@ -61,10 +68,11 @@ function Home({ setPagina, isLogged, setIsLogged }) {
           </div>
         </div>
       </section>
-      <section className='section-title'>
-        <h2 className='section-title'>Nuestros Productos</h2>
+      <section >
+        <h2 id="nuestros-productos" className='section-title'>Nuestros Productos</h2>
         <GridProductos />
       </section>
+      <Footer />
     </div >
   );
 }
